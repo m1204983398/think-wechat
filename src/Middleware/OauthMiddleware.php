@@ -58,7 +58,8 @@ class OauthMiddleware
                 Log::info($this->getTargetUrl($request));
                 return redirect($this->getTargetUrl($request));
             }
-            $url = $officialAccount->oauth->scopes($scopes)->redirect($request->url(true))->getTargetUrl();
+//            $url = $officialAccount->oauth->scopes($scopes)->redirect($request->url(true))->getTargetUrl();
+            $url = $officialAccount->oauth->scopes($scopes)->redirect($request->url(true));
             return redirect($url);
         }
         Hook::listen('wechat_oauth', [

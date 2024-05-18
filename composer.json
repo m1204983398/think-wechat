@@ -5,12 +5,16 @@
     "keywords": ["wechat", "weixin","easywechat","thinkphp","think", "sdk"],
     "require": {
         "w7corp/easywechat": "^5.0",
-        "topthink/framework": "^5.1"
+        "topthink/framework": "^5.1",
+        "ext-json": "*"
     },
     "license": "MIT",
     "authors": [{
         "name": "耐小心",
         "email": "qiqizjl@qq.com"
+    },{
+        "name": "zkzhang",
+        "email": "1204983398@qq.com"
     }],
     "autoload": {
         "psr-4": {
@@ -24,5 +28,11 @@
         "think-config": {
           "wechat": "src/config.php"
         }
-      }
+      },
+    "config": {
+        "allow-plugins": {
+            "topthink/think-installer": false,
+            "easywechat-composer/easywechat-composer": false
+        }
+    }
 }
