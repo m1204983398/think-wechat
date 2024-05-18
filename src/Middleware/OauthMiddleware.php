@@ -27,10 +27,9 @@ class OauthMiddleware
      */
     public function handle(Request $request, \Closure $next, $param = null)
     {
-
         $params  = $this->getParam($param);
-        $account = $params["account"];
-        $scopes  = $params["scopes"];
+        $account = $params['account'];
+        $scopes  = $params['scopes'];
         //定义session
         $session_key = 'wechat_oauth_user_' . $account;
         $session     = Session::get($session_key);
@@ -47,8 +46,9 @@ class OauthMiddleware
         }
         Log::info(json_encode($session));
         if (!$session) {
-            if ($request->get('code')) {
-                $session = $officialAccount->oauth->user();
+            if ($request->has('code')) {
+                $code = $request->get('code');
+                $session = $officialAccount->oauth->userFromCode($code);
                 Session::set($session_key, $session);
                 Hook::listen('wechat_oauth', [
                     'user'   => $session,
